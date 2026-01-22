@@ -1,0 +1,115 @@
+:root {
+    --primary: #064e3b; /* Emerald Dark */
+    --accent: #d4af37;  /* Gold */
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --arabic-font-size: 40px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    color: #334155;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary), #065f46);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.controls {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#search {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.font-resizer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 5px; height: 100%;
+    background: var(--accent);
+}
+
+.card .no {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.card .arabic {
+    font-family: 'Amiri', serif;
+    font-size: var(--arabic-font-size);
+    color: var(--primary);
+    margin: 15px 0;
+    direction: rtl;
+}
+
+.card .latin {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.card .arti {
+    color: #64748b;
+    font-size: 0.95em;
+    margin-top: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    font-size: 0.8em;
+}
