@@ -1,4 +1,4 @@
-const CACHE_NAME = 'asmaul-husna-v2'; // Versi dinaikkan ke v2 karena ada aset baru (ikon)
+const CACHE_NAME = 'asmaul-husna-v3'; // Versi dinaikkan ke v2 karena ada aset baru (ikon)
 const assets = [
   './',
   './index.html',
