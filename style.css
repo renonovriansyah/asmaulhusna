@@ -124,12 +124,16 @@ header {
 /* Teks Arab di kanan */
 .card .arabic {
     font-family: 'Amiri', 'Traditional Arabic', serif;
-    font-size: calc(var(--arabic-font-size) * 0.85); /* Skala ukuran otomatis */
+    font-size: calc(var(--arabic-font-size) * 0.85);
     color: var(--primary);
     direction: rtl;
-    line-height: 1.8; /* Harokat aman */
+    line-height: 1.8;
     margin: 0;
     flex-shrink: 0;
+    /* Tambahkan ini */
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    transition: font-size 0.1s ease; /* Biar pergerakan slider terasa smooth */
 }
 
 footer {
@@ -143,6 +147,13 @@ footer {
 @media (max-width: 450px) {
     #container { padding: 10px; }
     .card { padding: 10px 15px; }
-    .card .arabic { font-size: 30px; }
+    
+    /* Gunakan variabel, jangan nilai mati (30px) */
+    .card .arabic { 
+        font-size: calc(var(--arabic-font-size) * 0.7); /* Skala lebih kecil untuk HP */
+        -webkit-text-size-adjust: none; /* Mencegah font boosting di Android/iOS */
+        text-size-adjust: none;
+    }
+    
     .card .latin { font-size: 1em; }
 }
