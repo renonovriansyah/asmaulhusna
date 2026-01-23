@@ -1,3 +1,12 @@
+// 1. DAFTARKAN SERVICE WORKER (Wajib untuk PWA/Offline)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW: Terdaftar (Versi Aktif)'))
+            .catch(err => console.log('SW: Gagal daftar', err));
+    });
+}
+
 const dataAsmaulHusna = [
     { no: 0, latin: "Ya Allah", arabic: "يَا اَللّٰهُ", arti: "Wahai Allah" },
     { no: 1, latin: "Ar-Rahman", arabic: "ٱلرَّحْمٰنُ", arti: "Yang Maha Pengasih" },
@@ -101,12 +110,12 @@ const dataAsmaulHusna = [
     { no: 99, latin: "Ash-Shabur", arabic: "ٱلصَّبُوْرُ", arti: "Yang Maha Sabar" }
 ];
 
-// Inisialisasi DOM
+// 3. INISIALISASI DOM
 const container = document.getElementById('container');
 const searchInput = document.getElementById('search');
 const fontSizeSlider = document.getElementById('fontSize');
 
-// Fungsi Render Card
+// 4. FUNGSI RENDER CARD
 function renderData(data) {
     container.innerHTML = data.map(item => `
         <div class="card">
@@ -120,13 +129,21 @@ function renderData(data) {
     `).join('');
 }
 
-// Event Listener Slider Font
+// 5. FITUR MEMORI UKURAN FONT (LocalStorage)
+// Mengambil ukuran yang tersimpan atau gunakan default 40
+const savedFontSize = localStorage.getItem('asmaul-font-size') || '40';
+fontSizeSlider.value = savedFontSize;
+document.documentElement.style.setProperty('--arabic-font-size', savedFontSize + 'px');
+
+// 6. EVENT LISTENER SLIDER FONT
 fontSizeSlider.addEventListener('input', (e) => {
-    const size = e.target.value + 'px';
-    document.documentElement.style.setProperty('--arabic-font-size', size);
+    const size = e.target.value;
+    document.documentElement.style.setProperty('--arabic-font-size', size + 'px');
+    // Simpan ke memori browser
+    localStorage.setItem('asmaul-font-size', size);
 });
 
-// Event Listener Search
+// 7. EVENT LISTENER SEARCH
 searchInput.addEventListener('input', (e) => {
     const term = e.target.value.toLowerCase();
     const filtered = dataAsmaulHusna.filter(item => 
@@ -136,5 +153,5 @@ searchInput.addEventListener('input', (e) => {
     renderData(filtered);
 });
 
-// Tampilkan Data Pertama Kali
+// 8. TAMPILKAN DATA PERTAMA KALI
 renderData(dataAsmaulHusna);
