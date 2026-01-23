@@ -110,10 +110,12 @@ const fontSizeSlider = document.getElementById('fontSize');
 function renderData(data) {
     container.innerHTML = data.map(item => `
         <div class="card">
-            <div class="no">${item.no === 0 ? '✨' : '#' + item.no}</div>
+            <div class="card-info">
+                <div class="no">${item.no === 0 ? '✨' : '#' + item.no}</div>
+                <div class="latin">${item.latin}</div>
+                <div class="arti">${item.arti}</div>
+            </div>
             <div class="arabic">${item.arabic}</div>
-            <div class="latin">${item.latin}</div>
-            <div class="arti">${item.arti}</div>
         </div>
     `).join('');
 }

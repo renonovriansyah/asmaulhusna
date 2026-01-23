@@ -7,7 +7,6 @@
 }
 
 body {
-    /* Menambahkan font cadangan sistem jika Google Fonts gagal dimuat saat offline */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg);
     margin: 0;
@@ -18,67 +17,70 @@ body {
 header {
     background: linear-gradient(135deg, var(--primary), #065f46);
     color: white;
-    padding: 40px 20px;
+    padding: 30px 20px;
     text-align: center;
     border-radius: 0 0 30px 30px;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
 }
 
 .controls {
-    margin-top: 25px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 #search {
     width: 90%;
     max-width: 400px;
-    padding: 14px 24px;
+    padding: 12px 20px;
     border-radius: 50px;
     border: 1px solid rgba(255,255,255,0.3);
     outline: none;
-    font-size: 16px;
+    font-size: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .font-resizer {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 0.85em;
+    gap: 10px;
+    font-size: 0.8em;
     background: rgba(255, 255, 255, 0.1);
-    padding: 5px 15px;
+    padding: 4px 12px;
     border-radius: 20px;
 }
 
+/* CONTAINER: Dibuat lebih rapat */
 #container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 30px;
+    /* 2 kolom di layar besar, 1 kolom di HP */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 12px; 
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* CARD: Diubah menjadi Horizontal (Persegi Panjang) */
 .card {
     background: var(--card-bg);
-    padding: 35px 25px;
-    border-radius: 24px;
-    text-align: center;
+    padding: 12px 20px;
+    border-radius: 16px;
+    display: flex; /* Aktifkan Flexbox Horizontal */
+    align-items: center;
+    justify-content: space-between;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid #e2e8f0;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: 85px;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     border-color: var(--accent);
 }
 
@@ -86,48 +88,61 @@ header {
     content: "";
     position: absolute;
     top: 0; left: 0;
-    width: 6px; height: 100%;
+    width: 5px; height: 100%;
     background: var(--accent);
+}
+
+/* Bungkus teks informasi di kiri */
+.card-info {
+    text-align: left;
+    flex: 1;
+    padding-right: 15px;
 }
 
 .card .no {
     color: var(--accent);
     font-weight: bold;
-    font-size: 1em;
-    margin-bottom: 10px;
-}
-
-.card .arabic {
-    /* Amiri font adalah font eksternal, tambahkan serif sebagai fallback */
-    font-family: 'Amiri', 'Traditional Arabic', serif;
-    font-size: var(--arabic-font-size);
-    color: var(--primary);
-    margin: 10px 0;
-    direction: rtl;
-    /* PENTING: line-height tinggi agar harakat atas/bawah tidak terpotong */
-    line-height: 1.8; 
-    word-spacing: 5px;
+    font-size: 0.85em;
+    margin-bottom: 2px;
 }
 
 .card .latin {
-    font-size: 1.3em;
+    font-size: 1.15em;
     font-weight: 700;
     color: #0f172a;
-    margin-top: 5px;
+    display: block;
 }
 
 .card .arti {
     color: #64748b;
-    font-size: 0.95em;
-    margin-top: 10px;
+    font-size: 0.85em;
+    margin-top: 2px;
     font-style: italic;
-    line-height: 1.4;
+    line-height: 1.2;
+}
+
+/* Teks Arab di kanan */
+.card .arabic {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: calc(var(--arabic-font-size) * 0.85); /* Skala ukuran otomatis */
+    color: var(--primary);
+    direction: rtl;
+    line-height: 1.8; /* Harokat aman */
+    margin: 0;
+    flex-shrink: 0;
 }
 
 footer {
     text-align: center;
-    padding: 50px 20px;
+    padding: 40px 20px;
     color: #94a3b8;
-    font-size: 0.85em;
-    border-top: 1px solid #e2e8f0;
+    font-size: 0.8em;
+}
+
+/* Penyesuaian khusus layar kecil */
+@media (max-width: 450px) {
+    #container { padding: 10px; }
+    .card { padding: 10px 15px; }
+    .card .arabic { font-size: 30px; }
+    .card .latin { font-size: 1em; }
 }
