@@ -7,10 +7,12 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    /* Menambahkan font cadangan sistem jika Google Fonts gagal dimuat saat offline */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg);
     margin: 0;
     color: #334155;
+    overflow-x: hidden;
 }
 
 header {
@@ -19,7 +21,7 @@ header {
     padding: 40px 20px;
     text-align: center;
     border-radius: 0 0 30px 30px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
 }
 
 .controls {
@@ -31,27 +33,30 @@ header {
 }
 
 #search {
-    width: 100%;
+    width: 90%;
     max-width: 400px;
-    padding: 12px 20px;
+    padding: 14px 24px;
     border-radius: 50px;
-    border: none;
+    border: 1px solid rgba(255,255,255,0.3);
     outline: none;
     font-size: 16px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .font-resizer {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 0.9em;
+    gap: 12px;
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
 #container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 25px;
     padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -59,57 +64,70 @@ header {
 
 .card {
     background: var(--card-bg);
-    padding: 30px;
-    border-radius: 20px;
+    padding: 35px 25px;
+    border-radius: 24px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid #e2e8f0;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    border-color: var(--accent);
 }
 
 .card::before {
     content: "";
     position: absolute;
     top: 0; left: 0;
-    width: 5px; height: 100%;
+    width: 6px; height: 100%;
     background: var(--accent);
 }
 
 .card .no {
     color: var(--accent);
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 1em;
+    margin-bottom: 10px;
 }
 
 .card .arabic {
-    font-family: 'Amiri', serif;
+    /* Amiri font adalah font eksternal, tambahkan serif sebagai fallback */
+    font-family: 'Amiri', 'Traditional Arabic', serif;
     font-size: var(--arabic-font-size);
     color: var(--primary);
-    margin: 15px 0;
+    margin: 10px 0;
     direction: rtl;
+    /* PENTING: line-height tinggi agar harakat atas/bawah tidak terpotong */
+    line-height: 1.8; 
+    word-spacing: 5px;
 }
 
 .card .latin {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #1e293b;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 5px;
 }
 
 .card .arti {
     color: #64748b;
     font-size: 0.95em;
-    margin-top: 8px;
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.4;
 }
 
 footer {
     text-align: center;
-    padding: 40px;
+    padding: 50px 20px;
     color: #94a3b8;
-    font-size: 0.8em;
+    font-size: 0.85em;
+    border-top: 1px solid #e2e8f0;
 }
