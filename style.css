@@ -107,15 +107,17 @@ header {
 }
 
 .card .latin {
-    font-size: 1.15em;
+    /* Kita kalikan 0.4 agar ukurannya proporsional (tidak sebesar Arab) */
+    font-size: calc(var(--arabic-font-size) * 0.45); 
     font-weight: 700;
     color: #0f172a;
     display: block;
+    transition: font-size 0.1s ease;
 }
 
 .card .arti {
     color: #64748b;
-    font-size: 0.85em;
+    font-size: 14px; /* Gunakan PX, jangan EM, agar tidak ikut berubah */
     margin-top: 2px;
     font-style: italic;
     line-height: 1.2;
@@ -155,5 +157,7 @@ footer {
         text-size-adjust: none;
     }
     
-    .card .latin { font-size: 1em; }
+    .card .latin { 
+        font-size: calc(var(--arabic-font-size) * 0.5); 
+    }
 }
